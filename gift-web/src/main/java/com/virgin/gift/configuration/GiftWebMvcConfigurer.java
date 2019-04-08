@@ -20,21 +20,13 @@ import java.util.List;
 @Configuration
 public class GiftWebMvcConfigurer implements WebMvcConfigurer {
 
+    /**
+     * 配置HandlerExceptionResolver
+     * @param resolvers
+     */
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        System.out.println("configure");
         resolvers.add(new GiftHandlerExceptionResolver());
-        for(HandlerExceptionResolver resolver : resolvers){
-            System.out.println(resolver);
-        }
-    }
-
-    @Override
-    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        System.out.println("extend");
-        for(HandlerExceptionResolver resolver : resolvers){
-            System.out.println(resolver);
-        }
     }
 
     /**
@@ -44,13 +36,6 @@ public class GiftWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor());
-    }
-
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        for(HttpMessageConverter converter : converters){
-            System.out.println(converter);
-        }
     }
 
     /**
